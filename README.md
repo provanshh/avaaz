@@ -1,68 +1,180 @@
-# Avaaz
+<h1 align="center">
+  AVAAZ
+</h1>
 
-**Give your knowledge a voice.**
+<p align="center">
+  <strong>AI for Voice Agents</strong>
+</p>
 
-Avaaz turns a website, a conversation, or a few notes into a public **AI voice agent** anyone can talk to. Businesses paste a URL. People speak what’s missing. Visitors get answers out loud — not another chatbot wall of text.
+<p align="center">
+  <em>Give your business a voice.</em>
+</p>
 
-No code. Google sign-in to create. One link to share.
+<p align="center">
+  Paste a website. Talk the gaps. Share a live voice agent — in one sitting.
+</p>
 
-```
-Paste a site  →  Talk the gaps  →  Pick a voice  →  Share the agent
-```
+<p align="center">
+  <code>Website → Voice → Agent → Customers talk</code>
+</p>
+
+---
+
+**Avaaz** is the voice layer for any business, creator, or campus. It turns a site, a conversation, or a few notes into a public **AI voice agent** anyone can call. Visitors get answers out loud — not another chatbot wall of text.
+
+> **Avaaz — AI for Voice Agents — Give your business a voice.**
+
+| | |
+|---|---|
+| **Create** | Google sign-in. No code. No widget install. |
+| **Go live** | One `/talk` link. Follow. Embed. |
+| **Stay on** | Knowledge first. Web search if needed. Mic stays open. |
 
 ---
 
 ## Table of contents
 
-1. [What it does](#what-it-does)
-2. [Why it started](#why-it-started)
-3. [Who can use it](#who-can-use-it)
-4. [How easy it is](#how-easy-it-is)
-5. [Product flow](#product-flow)
-6. [System architecture](#system-architecture)
-7. [Voice conversation flow](#voice-conversation-flow)
-8. [How OpenAI is used](#how-openai-is-used)
-9. [How Codex was used](#how-codex-was-used)
-10. [Stack](#stack)
-11. [Setup](#setup)
-12. [Routes](#routes)
-13. [Featured agents](#featured-agents)
+1. [The business angle](#the-business-angle)
+2. [Impact](#impact)
+3. [Business model](#business-model)
+4. [What it does](#what-it-does)
+5. [Why it started](#why-it-started)
+6. [Who can use it](#who-can-use-it)
+7. [How easy it is](#how-easy-it-is)
+8. [Product flow](#product-flow)
+9. [System architecture](#system-architecture)
+10. [Voice conversation flow](#voice-conversation-flow)
+11. [How OpenAI is used](#how-openai-is-used)
+12. [How Codex was used](#how-codex-was-used)
+13. [Final tech stack](#final-tech-stack)
+14. [Setup](#setup)
+15. [Routes](#routes)
+16. [Featured agents](#featured-agents)
+
+---
+
+## The business angle
+
+Most companies already paid for a website. Almost none of them can *talk*.
+
+Hours, products, pricing, and FAQs sit in pages that customers will not read — especially on a phone, after hours, or while walking in. The default answer is a chat widget that types walls of text, or a human who is closed, busy, or expensive.
+
+**Avaaz’s bet:** if the knowledge exists, it should be a voice in under 10 minutes — not a six-week bot project.
+
+| Problem | What it costs | What Avaaz does |
+|---|---|---|
+| Unanswered “are you open / how much / do you have X?” | Missed visits and abandoned carts | A public voice that already knows the site |
+| Support queues for the same 20 questions | $6–$15 per live-agent contact (typical BPO range) | Deflect FAQs to a shareable agent |
+| After-hours silence | Lost demand when the shop is closed | 24/7 talk page, no extra headcount |
+| Chatbots nobody finishes | High bounce on long text replies | Speak, hear, keep the mic open |
+| Custom “AI agent” builds | Weeks + an engineer | Paste URL → talk gaps → publish |
+
+**Who pays:** the business that owns the knowledge (shop, SaaS, campus, creator). **Who talks for free:** their customers. Distribution is a link or an embed — not an app store.
+
+```mermaid
+flowchart LR
+  Site[Existing website] --> Avaaz[Avaaz agent]
+  Owner[Owner talks the gaps] --> Avaaz
+  Avaaz --> Link[One public link]
+  Link --> C1[Customer on mobile]
+  Link --> C2[After hours]
+  Link --> C3[Embedded on the site]
+```
+
+---
+
+## Impact
+
+Figures below are **market context** (widely cited industry ranges), used to size the problem Avaaz attacks — not live Avaaz production metrics.
+
+| Signal | Number | Why it matters for Avaaz |
+|---|---|---|
+| Calls small businesses never pick up | **~60%+** unanswered in many local-business studies | A voice agent does not go to voicemail |
+| Customers who expect an “immediate” reply | **~80–90%** (service-benchmark surveys) | Voice is faster than finding a FAQ page |
+| Speaking vs typing | **~3–4×** faster than typing the same request | Lower effort than a chat box |
+| Live support cost per contact | **~$6–$15** typical; AI deflection **cents to ~$1** | FAQ voice pays for itself on a handful of contacts |
+| Conversational AI market | **tens of billions USD** this decade (analyst estimates) | Voice is the interface customers already use on phones |
+| Time to a traditional custom bot | **weeks** | Avaaz target: **one sitting** |
+| Time to an Avaaz agent | **~5–15 minutes** after Google sign-in | Website crawl + a few spoken answers |
+| Engineering required | **0** | Owner pastes a URL and talks |
+
+**What changes for a business that ships Avaaz**
+
+| Before | After |
+|---|---|
+| Site is a brochure | Site becomes something people can *ask* |
+| Staff repeat hours, SKUs, policies | Agent recites them; humans take exceptions |
+| Closed sign = zero answers | Talk page still listens |
+| “Install our widget” friction | One URL, optional embed |
+
+A single deflected “what are your hours / do you deliver / what’s included?” loop, a few times a day, is already more value than a $12 Studio month. Scale is extra agents, extra brands, extra languages later — the wedge is **always-on voice for knowledge that already exists**.
+
+---
+
+## Business model
+
+Short version: **free to create, paid to scale.** The product is the agent. The customer is the owner.
+
+```mermaid
+flowchart TD
+  Free[Starter · Free] --> Studio[Studio · $12 / mo]
+  Studio --> House[House · custom]
+  Free --> Use[Create + public talk link]
+  Studio --> More[Unlimited agents · sharper presence]
+  House --> Ent[Volume, crawl priority, guided setup]
+```
+
+| Plan | Price | What you get | Who it is for |
+|---|---|---|---|
+| **Starter** | Free | Up to **3** agents, website + voice setup, public talk page | Trying Avaaz, one shop, a campus demo |
+| **Studio** | **$12 / month** | Unlimited agents, custom logo & FAQs, follower insights | Teams and multi-brand owners |
+| **House** | Talk to us | Priority crawl, team seats, guided setup | Brands that need volume and support |
+
+**How money shows up**
+
+| Motion | Detail |
+|---|---|
+| **Land** | Free Starter — Google, paste site, go live. No card to try. |
+| **Expand** | Studio when a fourth agent, a second brand, or polish is needed |
+| **Enterprise** | House — crawl volume, seats, white-glove |
+| **Unit cost** | LLM tokens via OpenRouter; live mic/TTS can stay in the browser to keep COGS low |
+| **Not in v1** | Ads on talk pages, taking a cut of customer purchases |
+
+Pricing on `/pricing` is display-first for the MVP. The model is SaaS subscription on **agents owned**, not per visitor question.
 
 ---
 
 ## What it does
 
-Avaaz is a **voice-first knowledge agent**. It does four jobs in one product:
+**Avaaz** is a voice-first knowledge agent. Four jobs, one product:
 
-| Capability | What happens |
-|---|---|
-| **Listen** | For businesses, Firecrawl reads the website. For everyone else, you talk. |
-| **Understand** | OpenAI (via OpenRouter) extracts name, hours, products, FAQs, and personality into structured knowledge. |
-| **Speak** | Visitors talk to a public page. The agent answers from that knowledge, then searches the web if needed. |
-| **Share** | One `/talk/[slug]` link, follow, copy, and an embed snippet. |
+| | Capability | What happens |
+|---|---|---|
+| **1** | **Listen** | Businesses: Firecrawl reads the website. Everyone else: you talk. |
+| **2** | **Understand** | OpenAI (via OpenRouter) extracts name, hours, products, FAQs, personality. |
+| **3** | **Speak** | Visitors talk on a public page. Answers from knowledge, then the web if needed. |
+| **4** | **Share** | One `/talk/[slug]` link. Follow. Copy. Embed. |
 
-It is **not** a generic chatbot with a microphone bolted on. The public page is built to listen, answer out loud, and keep the mic open.
+Not a generic chatbot with a microphone. The public page is built to listen, answer out loud, and keep the mic open.
 
 ---
 
 ## Why it started
 
-Knowledge is usually stuck in three places: a website nobody reads, a PDF nobody opens, or someone’s head.
+Knowledge is stuck in a website nobody reads, a PDF nobody opens, or someone’s head.
 
-Typical “AI for business” tools ask you to fill a CMS, train a bot, then drop a chat widget that dumps paragraphs. That is slow to set up and awkward to use — especially for a shop, a creator, a campus, or a person who just wants to be *asked* something.
+Typical “AI for business” asks you to fill a CMS, train a bot, then drop a widget. Slow to set up. Awkward on a phone.
 
-Avaaz started as a hackathon MVP with a simpler bet:
+Avaaz started as a hackathon MVP with one bet:
 
 > **If the knowledge already exists, talking should be enough to turn it into an agent.**
-
-That meant:
 
 - Start from a **URL**, not a blank dashboard
 - Fill **only the gaps** by voice
 - Ship a **public voice page** in one sitting
-- Keep the UI light, calm, and shareable on a single screen
+- Keep the UI light, calm, and shareable on one screen
 
-The project was designed and directed by [Vansh](https://x.com/provanshh). Implementation moved fast with **OpenAI Codex** in Cursor (see [How Codex was used](#how-codex-was-used)).
+Designed and directed by [Vansh](https://x.com/provanshh). Built with **OpenAI Codex** as the implementation partner (see [How Codex was used](#how-codex-was-used)).
 
 ---
 
@@ -71,18 +183,18 @@ The project was designed and directed by [Vansh](https://x.com/provanshh). Imple
 | Audience | How they use Avaaz | Example |
 |---|---|---|
 | **Businesses** | Paste the company site → confirm gaps by voice → share with customers | Payments company, restaurant, jewellery shop |
-| **Creators** | Talk through who they are → public voice that introduces them | Portfolio / personal brand |
+| **Creators** | Talk through who they are → a public voice that introduces them | Portfolio / personal brand |
 | **Teachers & campuses** | Point at a site or speak FAQs → students ask out loud | Global Campus X (`/talk/globalcampusx`) |
 | **Anyone else** | Choose **Other**, speak the idea | Event, club, side project |
-| **Visitors** | Open a talk link — **no account required** to ask questions | Followers need Google to follow |
+| **Visitors** | Open a talk link — **no account** to ask questions | Google required only to follow |
 
-Creating an agent requires **Google sign-in** (Supabase Auth) so agents stay tied to an owner. Talking to a public agent does not.
+Creating an agent requires **Google sign-in**. Talking to a public agent does not.
 
 ---
 
 ## How easy it is
 
-Setup is four steps. Typing is optional after the URL.
+Four steps. Typing is optional after the URL.
 
 ```mermaid
 flowchart LR
@@ -97,10 +209,10 @@ flowchart LR
 | Type | Business / Personal / Other | Routes the create flow |
 | Website *(business)* | Paste a URL | Crawls the page, drafts knowledge |
 | Voice gaps | Answer only what’s missing | Merges speech into the agent |
-| Voice | Choose Nova, Coral, Aria, or Atlas | Maps to a distinct browser voice |
-| Share | Copy the link | Anyone can talk at `/talk/[slug]` |
+| Voice | Nova, Coral, Aria, or Atlas | Distinct female / male voices |
+| Share | Copy the link | Anyone talks at `/talk/[slug]` |
 
-**Time to a live agent:** one sitting. No SDK, no widget install, no prompt engineering required from the owner.
+**Time to live:** one sitting. No SDK. No prompt engineering from the owner.
 
 ---
 
@@ -108,7 +220,7 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-  Start([Landing /]) --> CTA[Create my agent]
+  Start([Avaaz /]) --> CTA[Create my agent]
   CTA --> Auth{Signed in?}
   Auth -->|No| Google[Google OAuth]
   Google --> Auth
@@ -162,7 +274,7 @@ flowchart TB
     Speech["gpt-4o-mini-tts optional"]
   end
 
-  subgraph Data["Data & crawl"]
+  subgraph Data["Data and crawl"]
     SB[(Supabase Postgres + Storage)]
     FC[Firecrawl]
     Logo[Logo.dev]
@@ -188,7 +300,7 @@ flowchart TB
 
 ## Voice conversation flow
 
-Live talk uses the **browser** for mic and speech. The server only reasons.
+Live talk: **browser** for mic and speech. Server only reasons.
 
 ```mermaid
 sequenceDiagram
@@ -199,11 +311,11 @@ sequenceDiagram
   participant DB as Supabase
 
   V->>B: Tap mic and speak
-  B->>B: SpeechRecognition → text
+  B->>B: SpeechRecognition to text
   B->>API: POST history + user text + slug
   API->>DB: Load agent by slug
-  API->>OR: Chat with agent knowledge (gpt-4o-mini)
-  alt Answer looks like "I don't know"
+  API->>OR: Chat with agent knowledge gpt-4o-mini
+  alt Answer looks like I don't know
     API->>OR: Retry with web search plugin
   end
   OR-->>API: Assistant text
@@ -214,57 +326,53 @@ sequenceDiagram
 
 | Layer | Technology | Role |
 |---|---|---|
-| Speech-to-text (live) | `SpeechRecognition` / `webkitSpeechRecognition` | Turn speech into text in the browser |
-| Reasoning | OpenAI `gpt-4o-mini` via OpenRouter | Onboarding questions + public answers |
-| Fallback search | OpenRouter `plugins: web` or `:online` | Used only if stored knowledge is not enough |
+| Speech-to-text (live) | `SpeechRecognition` | Speech → text in the browser |
+| Reasoning | OpenAI `gpt-4o-mini` via OpenRouter | Onboarding + public answers |
+| Fallback search | OpenRouter `plugins: web` or `:online` | When stored knowledge is not enough |
 | Text-to-speech (live) | `speechSynthesis` | Nova / Coral / Aria (female), Atlas (male) |
-| Optional STT / TTS | Whisper + OpenAI TTS via OpenRouter | Wired in `lib/openrouter/client.ts` if credits are available |
+| Optional STT / TTS | Whisper + OpenAI TTS via OpenRouter | Wired in `lib/openrouter/client.ts` |
 
 ---
 
 ## How OpenAI is used
 
-Avaaz talks to OpenAI **through OpenRouter** using the official `openai` Node SDK pointed at `https://openrouter.ai/api/v1`. That keeps one API key, one client, and model names like `openai/gpt-4o-mini`.
-
-Default models (overridable in `.env.local`):
+Avaaz talks to OpenAI **through OpenRouter** with the official `openai` Node SDK at `https://openrouter.ai/api/v1`. One key, one client, model names like `openai/gpt-4o-mini`.
 
 | Env var | Default | Used for |
 |---|---|---|
-| `OPENROUTER_CHAT_MODEL` | `openai/gpt-4o-mini` | Knowledge extraction, onboarding interview, public Q&A |
+| `OPENROUTER_CHAT_MODEL` | `openai/gpt-4o-mini` | Extract, onboarding, public Q&A |
 | `OPENROUTER_TTS_MODEL` | `openai/gpt-4o-mini-tts-2025-12-15` | Server TTS (optional) |
 | `OPENROUTER_STT_MODEL` | `openai/whisper-large-v3` | Server transcription (optional) |
 
 ```mermaid
 flowchart LR
   App[Avaaz server] -->|OpenAI SDK| OR[OpenRouter]
-  OR --> Chat["Chat Completions<br/>openai/gpt-4o-mini"]
-  OR --> Audio["Audio APIs<br/>Whisper + TTS"]
+  OR --> Chat["Chat Completions openai/gpt-4o-mini"]
+  OR --> Audio["Audio APIs Whisper + TTS"]
   Chat --> Extract[JSON knowledge]
   Chat --> Reply[Voice replies]
   Chat --> Search[Web-backed reply]
 ```
 
-### Where GPT runs in the product
-
-| Job | File | What the model returns |
+| Job | File | Model returns |
 |---|---|---|
-| Website → knowledge | `lib/openai/extract.ts` | JSON: name, hours, products, FAQs, personality |
-| Voice onboarding | `app/api/voice/turn/route.ts` | Next interview question, only about missing fields |
-| Public agent | same route + `lib/agents/prompt.ts` | Short spoken answers from stored knowledge |
-| “I don’t know” | same route, `search: true` | Answer from the web, prefer the official site |
+| Website → knowledge | `lib/openai/extract.ts` | JSON: name, hours, products, FAQs |
+| Voice onboarding | `app/api/voice/turn/route.ts` | Next question, only missing fields |
+| Public agent | same + `lib/agents/prompt.ts` | Short spoken answers |
+| “I don’t know” | same, `search: true` | Web answer, prefer official site |
 
-The OpenAI key never appears in the browser. The client sends **text**; the model sees the agent prompt and conversation history on the server.
+The OpenAI key never appears in the browser.
 
 ---
 
 ## How Codex was used
 
-This repo was built as a **directed pairing session with OpenAI Codex in Cursor** — not as an unattended code dump. Vansh set product taste (voice-first, light UI, talk-the-gaps). Codex implemented, refactored, and iterated against a running `next dev`.
+Avaaz was built as a **directed pairing session with OpenAI Codex** — not an unattended dump. Vansh set product taste (voice-first, light UI, talk-the-gaps). Codex implemented, refactored, and iterated against a running app.
 
 ```mermaid
 flowchart TD
-  Idea[Product idea: talkable knowledge] --> Codex[OpenAI Codex in Cursor]
-  Codex --> Loop[Read codebase → change → verify in browser]
+  Idea[Avaaz: talkable knowledge] --> Codex[OpenAI Codex]
+  Codex --> Loop[Read codebase then change then verify]
   Loop --> Review[Human review: copy, UX, keys, taste]
   Review --> Loop
   Review --> Ship[Hackathon MVP]
@@ -274,36 +382,65 @@ flowchart TD
 |---|---|
 | **App shell** | Next.js App Router, Tailwind v4, navbar, footer, about, pricing |
 | **Create flow** | Category → website crawl → voice gaps → knowledge → generating |
-| **Voice UX** | Mic that stays open, stop-while-speaking, history accordion, voice picker |
+| **Voice UX** | Mic that stays open, stop-while-speaking, history, voice picker |
 | **APIs** | `/api/voice/turn`, website extract, agents CRUD, follow |
 | **Data** | `supabase/schema.sql`, featured agents, follow counts |
-| **Integrations** | OpenRouter/OpenAI client, Firecrawl, Logo.dev, Google OAuth |
-| **Polish** | Gallery cards, DriftWall logos, About sections, README |
+| **Integrations** | OpenRouter / OpenAI client, Firecrawl, Logo.dev, Google OAuth |
+| **Polish** | Gallery, DriftWall, About, this README |
 
-**Rules we kept while using Codex:**
+**Rules while using Codex**
 
-- Product decisions stay with the human (copy, layout, what “easy” means)
+- Product decisions stay with the human
 - Secrets stay in `.env.local` — never committed, never echoed
 - OpenRouter / service keys stay **server-only**
-- Iterate on a running app instead of generating a disconnected prototype
+- Iterate on a running app, not a disconnected prototype
 
-Codex was the implementation partner. The product intent — *knowledge should be easy to talk to* — is human.
+Codex was the implementation partner. The intent — *give your business a voice* — is human.
 
 ---
 
-## Stack
+## Final tech stack
 
-| Layer | Choice | Why |
+| Layer | Choice | Role in Avaaz |
 |---|---|---|
-| App | Next.js 16 App Router, React 19, TypeScript | Routes, server APIs, and UI in one repo |
-| Style | Tailwind CSS v4 | Light, calm marketing + product UI |
-| Auth | Supabase Auth (Google) | Create and follow without a custom user table |
-| Database | Supabase Postgres | Agents, files, conversations, follows |
-| Files | Supabase Storage `agent-files` | Optional uploads |
-| LLM | OpenAI via OpenRouter | Chat, optional Whisper / TTS |
-| Crawl | Firecrawl | Business website → text |
-| Logos | Logo.dev | Gallery and talk-page marks |
-| Voice I/O | Web Speech API | Zero extra credits for live mic + playback |
+| **App** | Next.js 16 (App Router) | Pages, RSC, `/api` in one repo |
+| **UI** | React 19 + TypeScript | Type-safe product UI |
+| **Style** | Tailwind CSS v4 | Light, calm marketing + talk page |
+| **Auth** | Supabase Auth (Google) | Create + follow |
+| **Database** | Supabase Postgres | Agents, files, conversations, follows |
+| **Files** | Supabase Storage `agent-files` | Optional uploads |
+| **LLM** | OpenAI `gpt-4o-mini` via OpenRouter | Extract, interview, answers, web fallback |
+| **Optional audio** | Whisper + OpenAI TTS via OpenRouter | Server STT / TTS if credits allow |
+| **Live voice I/O** | Web Speech API | Mic + playback with low COGS |
+| **Crawl** | Firecrawl | Business website → text |
+| **Logos** | Logo.dev | Gallery and talk-page marks |
+| **Icons** | lucide-react | UI |
+| **Docs / PDFs** | mammoth, unpdf | Knowledge uploads |
+| **Share** | qrcode | Dashboard / share flows |
+| **Build partner** | OpenAI Codex | Implementation speed |
+
+```mermaid
+flowchart TB
+  subgraph Frontend
+    NextJS[Next.js 16]
+    React[React 19]
+    TW[Tailwind v4]
+  end
+  subgraph Intelligence
+    OR[OpenRouter]
+    OAI[OpenAI gpt-4o-mini]
+    OR --> OAI
+  end
+  subgraph Platform
+    SB[Supabase Auth + Postgres + Storage]
+    FC[Firecrawl]
+    LD[Logo.dev]
+  end
+  NextJS --> OR
+  NextJS --> SB
+  NextJS --> FC
+  NextJS --> LD
+```
 
 ---
 
@@ -337,7 +474,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Never put `OPENROUTER_API_KEY` or `SUPABASE_SERVICE_ROLE_KEY` in client code.
 
-**Google login:** enable the Google provider in Supabase Auth. Add `http://localhost:3000/auth/callback` (and production) to the redirect allow list.
+**Google login:** enable Google in Supabase Auth. Add `http://localhost:3000/auth/callback` (and production) to the redirect allow list.
 
 ---
 
@@ -347,21 +484,21 @@ Never put `OPENROUTER_API_KEY` or `SUPABASE_SERVICE_ROLE_KEY` in client code.
 |---|---|
 | `/` | Landing, how it works, gallery |
 | `/about` | Overview, products, why Avaaz |
-| `/pricing` | Display plans (try without paying) |
-| `/create` | Type: Business / Personal / Other |
+| `/pricing` | Starter / Studio / House |
+| `/create` | Business / Personal / Other |
 | `/create/website` | Paste URL (business) |
 | `/create/voice` | Talk the gaps |
 | `/create/knowledge` | Files + voice picker |
 | `/create/generating` | Build the agent |
 | `/agent/[slug]` | Owner dashboard |
-| `/talk/[slug]` | Public voice page (`?embed=1` for embed) |
+| `/talk/[slug]` | Public voice (`?embed=1` for embed) |
 | `/auth/callback` | Google OAuth return |
 
 ---
 
 ## Featured agents
 
-Try the public talk pages without creating one:
+Try talk pages without creating one:
 
 | Agent | Talk path | Site |
 |---|---|---|
@@ -393,6 +530,13 @@ Try the public talk pages without creating one:
 
 ---
 
-## Author
+<p align="center">
+  <strong>AVAAZ</strong><br>
+  AI for Voice Agents<br>
+  <em>Give your business a voice.</em>
+</p>
 
-Made by [Vansh](https://x.com/provanshh). Built with OpenAI Codex in Cursor, OpenAI models via OpenRouter, Next.js, and Supabase.
+<p align="center">
+  Made by <a href="https://x.com/provanshh">Vansh</a>
+  · OpenAI Codex · OpenAI via OpenRouter · Next.js · Supabase
+</p>
