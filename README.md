@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Avaaz
 
-## Getting Started
+Give your knowledge a voice. Create an AI voice agent by simply talking.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript + Tailwind CSS
+- Supabase (Postgres + Storage)
+- OpenRouter (chat, speech-to-text, text-to-speech)
+
+## Setup
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Add your keys, then run the SQL in `supabase/schema.sql` (Supabase Dashboard → SQL Editor → Run).
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Where it is used |
+|---|---|
+| `OPENROUTER_API_KEY` | Server-only. Chat, transcription, and voice |
+| `NEXT_PUBLIC_SUPABASE_URL` | Browser + server |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Browser + server (publishable key) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Optional. Server uploads if you prefer the service role |
+| `NEXT_PUBLIC_SITE_URL` | Optional. OpenRouter app attribution |
 
-## Learn More
+Never put `OPENROUTER_API_KEY` or `SUPABASE_SERVICE_ROLE_KEY` in client code.
 
-To learn more about Next.js, take a look at the following resources:
+Google sign-in uses Supabase Auth. In the Supabase dashboard enable the Google provider and add `http://localhost:3000/auth/callback` (and your production URL) to the redirect allow list.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## APIs required
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **OpenRouter**
+   - Chat completions to extract agent knowledge and run conversations
+   - `/api/v1/audio/transcriptions` for speech-to-text
+   - `/api/v1/audio/speech` for text-to-speech
+2. **Supabase**
+   - Postgres tables + Storage bucket `agent-files` from `supabase/schema.sql`
 
-## Deploy on Vercel
+## Voice
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The browser records microphone audio and sends it to `/api/voice/turn`. The server transcribes, replies with the agent's knowledge, and returns spoken audio. The OpenRouter key never ships to the browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Walkthrough
+
+1. Open `/`
+2. Create my agent
+3. Choose Business
+4. Tap the mic and say:  
+   *My business is Noor Jewels. We are a handmade jewellery store in Delhi. We are open from 10 AM to 8 PM. We sell necklaces, bracelets and rings.*
+5. Answer a couple of follow-ups
+6. Upload `public/samples/noor-jewels-catalog.pdf` (or `.txt`)
+7. Create agent
+8. Open public agent
+9. Ask *What products do you sell?* and *What are your opening hours?*
+10. Share → copy link / QR
+
+## Routes
+
+- `/` landing
+- `/create` category
+- `/create/voice` onboarding
+- `/create/knowledge` files
+- `/create/generating` creation
+- `/agent/[slug]` dashboard
+- `/talk/[slug]` public voice
+- `/about` about
+- `/pricing` pricing

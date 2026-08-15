@@ -1,0 +1,14 @@
+Noor Jewels Product Catalog
+
+Handmade jewellery from Delhi.
+
+Opening hours: 10 AM to 8 PM
+
+Products:
+- Necklaces: gold-plated and silver chains, pendant sets
+- Bracelets: beaded, cuff, and charm bracelets
+- Rings: stackable bands and statement rings
+
+Notes:
+All pieces are handmade. Custom sizes available on request.
+We do not list prices in this sample catalog.
